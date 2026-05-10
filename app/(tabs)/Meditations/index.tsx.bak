@@ -1,0 +1,755 @@
+import React, { useState } from 'react';
+import { Link } from 'expo-router';
+import { Dimensions, FlatList, Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { CATEGORIES, MEDITATIONS, MeditationCategory, MeditationTrack } from '../../../data/meditations';
+import { useThemeColor } from '../../../hooks/use-theme-color';
+import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
+
+  return (
+
+    <View style={[styles.container, { backgroundColor }]}>
+
+      <View style={styles.header}>
+
+        <Text style={[styles.title, { color: textColor }]}>Meditations</Text>export default function MeditationsIndex() {import { Ionicons } from '@expo/vector-icons';import { ScrollView, StyleSheet, View } from 'react-native';import { useState } from "react";
+
+        <Ionicons name="home-outline" size={24} color={tintColor} />
+
+      </View>  const backgroundColor = useThemeColor({}, 'background');
+
+      
+
+      <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>  const textColor = useThemeColor({}, 'text');import { CATEGORIES, MEDITATIONS } from '../../../data/meditations';
+
+        {/* Categories */}
+
+        <ScrollView   const tintColor = useThemeColor({}, 'tint');
+
+          horizontal 
+
+          showsHorizontalScrollIndicator={false}import { useThemeColor } from '../../../hooks/use-theme-color';import {
+
+          style={styles.categories}
+
+          contentContainerStyle={styles.categoriesContent}  return (
+
+        >
+
+          {Object.entries(CATEGORIES).map(([key, category]) => (    <View style={[styles.container, { backgroundColor }]}>
+
+            <TouchableOpacity 
+
+              key={key}       <View style={styles.header}>
+
+              style={[styles.categoryButton, { backgroundColor: tintColor + '20' }]}
+
+            >        <Text style={[styles.title, { color: textColor }]}>Meditations</Text>export default function MeditationsIndex() {export default function MeditationsIndex() {  Dimensions,
+
+              <Text style={styles.categoryIcon}>{category.icon}</Text>
+
+              <Text style={[styles.categoryText, { color: textColor }]}>{category.name}</Text>        <Ionicons name="home-outline" size={24} color={tintColor} />
+
+            </TouchableOpacity>
+
+          ))}      </View>  const backgroundColor = useThemeColor({}, 'background');
+
+        </ScrollView>
+
+      
+
+        {/* Meditation Cards */}
+
+        <View style={styles.meditationsGrid}>      <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>  const textColor = useThemeColor({}, 'text');  return (  FlatList,
+
+          {MEDITATIONS.map(meditation => (
+
+            <Link         {/* Categories */}
+
+              key={meditation.id} 
+
+              href={`/Meditations/${meditation.id}`}        <ScrollView   const tintColor = useThemeColor({}, 'tint');
+
+              asChild
+
+            >          horizontal 
+
+              <TouchableOpacity style={styles.meditationCard}>
+
+                <Image          showsHorizontalScrollIndicator={false}    <ScrollView>  Image,
+
+                  source={{ uri: meditation.image }}
+
+                  style={styles.meditationImage}          style={styles.categories}
+
+                  contentFit="cover"
+
+                />          contentContainerStyle={styles.categoriesContent}  return (
+
+                <View style={styles.cardContent}>
+
+                  <Text style={[styles.cardTitle, { color: textColor }]}>        >
+
+                    {meditation.title}
+
+                  </Text>          {Object.entries(CATEGORIES).map(([key, category]) => (    <View style={[styles.container, { backgroundColor }]}>      <View style={styles.container}>  Pressable,
+
+                  <Text style={[styles.cardSubtitle, { color: textColor + '99' }]}>
+
+                    {meditation.subtitle}            <TouchableOpacity 
+
+                  </Text>
+
+                  <View style={styles.cardMeta}>              key={key}       <View style={styles.header}>
+
+                    <Text style={[styles.duration, { color: textColor + '99' }]}>
+
+                      {Math.floor(meditation.duration / 60)} min              style={[styles.categoryButton, { backgroundColor: tintColor + '20' }]}
+
+                    </Text>
+
+                    <View style={[styles.level, { backgroundColor: tintColor + '20' }]}>            >        <Text style={[styles.title, { color: textColor }]}>Meditations</Text>        {MEDITATIONS.map((meditation) => (  ScrollView,
+
+                      <Text style={[styles.levelText, { color: tintColor }]}>
+
+                        {meditation.level}              <Text style={styles.categoryIcon}>{category.icon}</Text>
+
+                      </Text>
+
+                    </View>              <Text style={[styles.categoryText, { color: textColor }]}>{category.name}</Text>        <Ionicons name="home" size={24} color={tintColor} />
+
+                  </View>
+
+                </View>            </TouchableOpacity>
+
+              </TouchableOpacity>
+
+            </Link>          ))}      </View>          <Link key={meditation.id} href={`/Meditations/${meditation.id}`}>  StyleSheet,
+
+          ))}
+
+        </View>        </ScrollView>
+
+      </ScrollView>
+
+    </View>      
+
+  );
+
+}        {/* Meditation Cards */}
+
+
+
+const styles = StyleSheet.create({        <View style={styles.meditationsGrid}>      <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>            {meditation.title}  Text,
+
+  container: {
+
+    flex: 1,          {MEDITATIONS.map(meditation => (
+
+  },
+
+  header: {            <Link         {/* Categories */}
+
+    flexDirection: 'row',
+
+    justifyContent: 'space-between',              key={meditation.id} 
+
+    alignItems: 'center',
+
+    paddingHorizontal: 20,              href={`/Meditations/${meditation.id}`}        <ScrollView           </Link>  View
+
+    paddingTop: 60,
+
+    paddingBottom: 20,              asChild
+
+  },
+
+  title: {            >          horizontal 
+
+    fontSize: 32,
+
+    fontWeight: 'bold',              <TouchableOpacity style={styles.meditationCard}>
+
+  },
+
+  content: {                <Image          showsHorizontalScrollIndicator={false}        ))}} from "react-native";
+
+    flex: 1,
+
+  },                  source={{ uri: meditation.image }}
+
+  categories: {
+
+    marginBottom: 20,                  style={styles.meditationImage}          style={styles.categories}
+
+  },
+
+  categoriesContent: {                  contentFit="cover"
+
+    paddingHorizontal: 16,
+
+    gap: 12,                />          contentContainerStyle={styles.categoriesContent}      </View>import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
+
+  },
+
+  categoryButton: {                <View style={styles.cardContent}>
+
+    paddingHorizontal: 16,
+
+    paddingVertical: 12,                  <Text style={[styles.cardTitle, { color: textColor }]}>        >
+
+    borderRadius: 16,
+
+    alignItems: 'center',                    {meditation.title}
+
+    flexDirection: 'row',
+
+    gap: 8,                  </Text>          {Object.entries(CATEGORIES).map(([key, category]) => (    </ScrollView>import { CATEGORIES, MEDITATIONS, MeditationCategory, MeditationTrack } from "../../../data/meditations";
+
+  },
+
+  categoryIcon: {                  <Text style={[styles.cardSubtitle, { color: textColor + '99' }]}>
+
+    fontSize: 20,
+
+  },                    {meditation.subtitle}            <TouchableOpacity 
+
+  categoryText: {
+
+    fontSize: 16,                  </Text>
+
+    fontWeight: '500',
+
+  },                  <View style={styles.cardMeta}>              key={key}   );import { useThemeColor } from "../../../hooks/use-theme-color";
+
+  meditationsGrid: {
+
+    padding: 16,                    <Text style={[styles.duration, { color: textColor + '99' }]}>
+
+    gap: 16,
+
+  },                      {Math.floor(meditation.duration / 60)} min              style={[styles.categoryButton, { backgroundColor: tintColor + '20' }]}
+
+  meditationCard: {
+
+    backgroundColor: 'rgba(255,255,255,0.05)',                    </Text>
+
+    borderRadius: 16,
+
+    overflow: 'hidden',                    <View style={[styles.level, { backgroundColor: tintColor + '20' }]}>            >}
+
+    marginBottom: 16,
+
+  },                      <Text style={[styles.levelText, { color: tintColor }]}>
+
+  meditationImage: {
+
+    width: '100%',                        {meditation.level}              <Text style={styles.categoryIcon}>{category.icon}</Text>
+
+    height: 200,
+
+  },                      </Text>
+
+  cardContent: {
+
+    padding: 16,                    </View>              <Text style={[styles.categoryText, { color: textColor }]}>{category.name}</Text>const { width } = Dimensions.get("window");
+
+  },
+
+  cardTitle: {                  </View>
+
+    fontSize: 20,
+
+    fontWeight: '600',                </View>            </TouchableOpacity>
+
+    marginBottom: 4,
+
+  },              </TouchableOpacity>
+
+  cardSubtitle: {
+
+    fontSize: 16,            </Link>          ))}const styles = StyleSheet.create({const CARD_MARGIN = 10;
+
+    marginBottom: 12,
+
+  },          ))}
+
+  cardMeta: {
+
+    flexDirection: 'row',        </View>        </ScrollView>
+
+    justifyContent: 'space-between',
+
+    alignItems: 'center',      </ScrollView>
+
+  },
+
+  duration: {    </View>  container: {const NUM_COLUMNS = 2;
+
+    fontSize: 14,
+
+  },  );
+
+  level: {
+
+    paddingHorizontal: 12,}        {/* Meditation Cards */}
+
+    paddingVertical: 6,
+
+    borderRadius: 12,
+
+  },
+
+  levelText: {const styles = StyleSheet.create({        <View style={styles.meditationsGrid}>    flex: 1,const CARD_WIDTH = Math.floor((width - CARD_MARGIN * (NUM_COLUMNS + 1)) / NUM_COLUMNS);
+
+    fontSize: 12,
+
+    fontWeight: '500',  container: {
+
+    textTransform: 'capitalize',
+
+  },    flex: 1,          {MEDITATIONS.map(meditation => (
+
+});
+  },
+
+  header: {            <Link     padding: 20,
+
+    flexDirection: 'row',
+
+    justifyContent: 'space-between',              key={meditation.id} 
+
+    alignItems: 'center',
+
+    paddingHorizontal: 20,              href={`/Meditations/${meditation.id}`}  },// Using MEDITATIONS data from meditations.ts
+
+    paddingTop: 60,
+
+    paddingBottom: 20,              asChild
+
+  },
+
+  title: {            >});
+
+    fontSize: 32,
+
+    fontWeight: 'bold',              <TouchableOpacity style={styles.meditationCard}>export default function MeditationsIndex() {
+
+  },
+
+  content: {                <Image  const [selectedCategory, setSelectedCategory] = useState<MeditationCategory | 'all'>('all');
+
+    flex: 1,
+
+  },                  source={{ uri: meditation.image }}  const backgroundColor = useThemeColor({}, 'background');
+
+  categories: {
+
+    marginBottom: 20,                  style={styles.meditationImage}  const textColor = useThemeColor({}, 'text');
+
+  },
+
+  categoriesContent: {                  contentFit="cover"  const tintColor = useThemeColor({}, 'tint');
+
+    paddingHorizontal: 16,
+
+    gap: 12,                />  
+
+  },
+
+  categoryButton: {                <View style={styles.cardContent}>  const filteredMeditations = selectedCategory === 'all'
+
+    paddingHorizontal: 16,
+
+    paddingVertical: 12,                  <Text style={[styles.cardTitle, { color: textColor }]}>    ? MEDITATIONS
+
+    borderRadius: 16,
+
+    alignItems: 'center',                    {meditation.title}    : MEDITATIONS.filter(m => m.category === selectedCategory);
+
+    flexDirection: 'row',
+
+    gap: 8,                  </Text>
+
+  },
+
+  categoryIcon: {                  <Text style={[styles.cardSubtitle, { color: textColor + '99' }]}>  const renderCard = ({ item }: { item: MeditationTrack }) => {
+
+    fontSize: 20,
+
+  },                    {meditation.subtitle}    const category = CATEGORIES[item.category];
+
+  categoryText: {
+
+    fontSize: 16,                  </Text>    
+
+    fontWeight: '500',
+
+  },                  <View style={styles.cardMeta}>    return (
+
+  meditationsGrid: {
+
+    padding: 16,                    <Text style={[styles.duration, { color: textColor + '99' }]}>      <Animated.View 
+
+    gap: 16,
+
+  },                      {Math.floor(meditation.duration / 60)} min        style={styles.cardWrapper}
+
+  meditationCard: {
+
+    backgroundColor: 'rgba(255,255,255,0.05)',                    </Text>        entering={FadeIn.duration(400)}
+
+    borderRadius: 16,
+
+    overflow: 'hidden',                    <View style={[styles.level, { backgroundColor: tintColor + '20' }]}>        exiting={FadeOut.duration(300)}
+
+    marginBottom: 16,
+
+  },                      <Text style={[styles.levelText, { color: tintColor }]}>      >
+
+  meditationImage: {
+
+    width: '100%',                        {meditation.level}        <Link href={`./${item.id}`} asChild>
+
+    height: 200,
+
+  },                      </Text>          <Pressable 
+
+  cardContent: {
+
+    padding: 16,                    </View>            style={({ pressed }) => [
+
+  },
+
+  cardTitle: {                  </View>              styles.card, 
+
+    fontSize: 20,
+
+    fontWeight: '600',                </View>              { backgroundColor: pressed ? `${tintColor}10` : backgroundColor },
+
+    marginBottom: 4,
+
+  },              </TouchableOpacity>              pressed && styles.cardPressed
+
+  cardSubtitle: {
+
+    fontSize: 16,            </Link>            ]}
+
+    marginBottom: 12,
+
+  },          ))}          >
+
+  cardMeta: {
+
+    flexDirection: 'row',        </View>            <Image source={{ uri: item.image }} style={styles.image} resizeMode="cover" />
+
+    justifyContent: 'space-between',
+
+    alignItems: 'center',      </ScrollView>            <View style={styles.meta}>
+
+  },
+
+  duration: {    </View>              <View style={styles.categoryRow}>
+
+    fontSize: 14,
+
+  },  );                <Text style={styles.categoryEmoji}>{category.icon}</Text>
+
+  level: {
+
+    paddingHorizontal: 12,}                <Text style={[styles.categoryText, { color: textColor }]}>
+
+    paddingVertical: 6,
+
+    borderRadius: 12,                  {category.name}
+
+  },
+
+  levelText: {const styles = StyleSheet.create({                </Text>
+
+    fontSize: 12,
+
+    fontWeight: '500',  container: {                <View style={[styles.levelBadge, { backgroundColor: tintColor + '20' }]}>
+
+    textTransform: 'capitalize',
+
+  },    flex: 1,                  <Text style={[styles.levelText, { color: tintColor }]}>
+
+});
+  },                    {item.level}
+
+  header: {                  </Text>
+
+    flexDirection: 'row',                </View>
+
+    justifyContent: 'space-between',              </View>
+
+    alignItems: 'center',              <Text numberOfLines={1} style={[styles.title, { color: textColor }]}>
+
+    paddingHorizontal: 20,                {item.title}
+
+    paddingTop: 60,              </Text>
+
+    paddingBottom: 20,              <Text numberOfLines={1} style={[styles.subtitle, { color: textColor + '80' }]}>
+
+  },                {item.subtitle}
+
+  title: {              </Text>
+
+    fontSize: 32,              <View style={styles.playRow}>
+
+    fontWeight: 'bold',                <Link href={`./${item.id}`} asChild>
+
+  },                  <Pressable style={[styles.playButton, { backgroundColor: tintColor }]}>
+
+  content: {                    <Text style={styles.playText}>Play</Text>
+
+    flex: 1,                  </Pressable>
+
+  },                </Link>
+
+  categories: {                <Text style={[styles.durationText, { color: textColor + '80' }]}>
+
+    marginBottom: 20,                  {formatTime(item.duration)}
+
+  },                </Text>
+
+  categoriesContent: {              </View>
+
+    paddingHorizontal: 16,            </View>
+
+    gap: 12,          </Pressable>
+
+  },        </Link>
+
+  categoryButton: {      </Animated.View>
+
+    paddingHorizontal: 16,    );
+
+    paddingVertical: 12,  };
+
+    borderRadius: 16,
+
+    alignItems: 'center',  const renderCategories = () => {
+
+    flexDirection: 'row',    const categories: (MeditationCategory | 'all')[] = ['all', ...Object.keys(CATEGORIES) as MeditationCategory[]];
+
+    gap: 8,    
+
+  },    return (
+
+  categoryIcon: {      <ScrollView
+
+    fontSize: 20,        horizontal
+
+  },        showsHorizontalScrollIndicator={false}
+
+  categoryText: {        style={styles.categoriesContainer}
+
+    fontSize: 16,      >
+
+    fontWeight: '500',        {categories.map((category) => (
+
+  },          <Pressable
+
+  meditationsGrid: {            key={category}
+
+    padding: 16,            onPress={() => setSelectedCategory(category)}
+
+    gap: 16,            style={({ pressed }) => [
+
+  },              styles.categoryChip,
+
+  meditationCard: {              {
+
+    backgroundColor: 'rgba(255,255,255,0.05)',                backgroundColor: selectedCategory === category 
+
+    borderRadius: 16,                  ? tintColor 
+
+    overflow: 'hidden',                  : pressed 
+
+    marginBottom: 16,                    ? `${tintColor}20`
+
+  },                    : `${tintColor}10`,
+
+  meditationImage: {              }
+
+    width: '100%',            ]}
+
+    height: 200,          >
+
+  },            <Text style={styles.categoryEmoji}>
+
+  cardContent: {              {category === 'all' ? '🌟' : CATEGORIES[category]?.icon}
+
+    padding: 16,            </Text>
+
+  },            <Text 
+
+  cardTitle: {              style={[
+
+    fontSize: 20,                styles.categoryChipText, 
+
+    fontWeight: '600',                { 
+
+    marginBottom: 4,                  color: selectedCategory === category 
+
+  },                    ? '#fff'
+
+  cardSubtitle: {                    : textColor
+
+    fontSize: 16,                }
+
+    marginBottom: 12,              ]}
+
+  },            >
+
+  cardMeta: {              {category === 'all' ? 'All' : CATEGORIES[category]?.name}
+
+    flexDirection: 'row',            </Text>
+
+    justifyContent: 'space-between',          </Pressable>
+
+    alignItems: 'center',        ))}
+
+  },      </ScrollView>
+
+  duration: {    );
+
+    fontSize: 14,  };
+
+  },
+
+  level: {  return (
+
+    paddingHorizontal: 12,    <View style={[styles.container, { backgroundColor }]}>
+
+    paddingVertical: 6,      {renderCategories()}
+
+    borderRadius: 12,      <FlatList
+
+  },        contentContainerStyle={styles.list}
+
+  levelText: {        data={filteredMeditations}
+
+    fontSize: 12,        keyExtractor={(i) => i.id}
+
+    fontWeight: '500',        renderItem={renderCard}
+
+    textTransform: 'capitalize',        numColumns={NUM_COLUMNS}
+
+  },        showsVerticalScrollIndicator={false}
+
+});      />
+    </View>
+  );
+}
+
+function formatTime(sec: number) {
+  const m = Math.floor(sec / 60);
+  const s = sec % 60;
+  return `${m}:${s.toString().padStart(2, "0")}`;
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  categoriesContainer: {
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+  },
+  categoryChip: {
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 20,
+    marginRight: 8,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  categoryChipText: {
+    fontSize: 14,
+    fontWeight: '600',
+    marginLeft: 4,
+  },
+  list: {
+    padding: CARD_MARGIN,
+  },
+  cardWrapper: {
+    margin: CARD_MARGIN / 2,
+    width: CARD_WIDTH,
+  },
+  card: {
+    borderRadius: 16,
+    overflow: 'hidden',
+    // shadow (iOS)
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 4 },
+    shadowRadius: 12,
+    // elevation (Android)
+    elevation: 3,
+  },
+  cardPressed: {
+    transform: [{ scale: 0.98 }],
+    opacity: 0.95,
+  },
+  image: {
+    width: '100%',
+    height: CARD_WIDTH,
+    borderRadius: 16,
+  },
+  meta: {
+    padding: 12,
+  },
+  categoryRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  categoryEmoji: {
+    fontSize: 16,
+    marginRight: 4,
+  },
+  categoryText: {
+    fontSize: 12,
+    opacity: 0.8,
+    flex: 1,
+  },
+  levelBadge: {
+    paddingHorizontal: 8,
+    paddingVertical: 2,
+    borderRadius: 12,
+  },
+  levelText: {
+    fontSize: 10,
+    fontWeight: '600',
+  },
+  title: {
+    fontSize: 16,
+    fontWeight: '600',
+    marginBottom: 4,
+  },
+  subtitle: {
+    fontSize: 13,
+    marginBottom: 12,
+  },
+  playRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  playButton: {
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 20,
+  },
+  playText: {
+    color: '#fff',
+    fontWeight: '600',
+    fontSize: 13,
+  },
+  durationText: {
+    fontSize: 12,
+  },
+});
